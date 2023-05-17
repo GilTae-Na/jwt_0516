@@ -15,6 +15,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 @SpringBootTest
 class JwtTests {
 	@Autowired
@@ -59,7 +60,7 @@ class JwtTests {
 
 	@Test
 	@DisplayName("accessToken 을 얻는다.")
-	void t5() { //실 사용 코드
+	void t5() {
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("id", 1L);
 		claims.put("username", "admin");
@@ -91,7 +92,7 @@ class JwtTests {
 	}
 
 	@Test
-	@DisplayName("accessToken 을 통해서 claims 를 얻을 수 있다.")
+	@DisplayName("만료된 토큰을 유효하지 않다.")
 	void t7() {
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("id", 1L);
@@ -104,5 +105,4 @@ class JwtTests {
 
 		assertThat(jwtProvider.verify(accessToken)).isFalse();
 	}
-
 }
